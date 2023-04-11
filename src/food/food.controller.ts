@@ -18,7 +18,7 @@ export class FoodController {
 
 
     @Post('/food')
-    async createUser(
+    async createFood(
         @Body() CreateFoodDto,
     ): Promise<FoodModel> {
         return this.foodService.createFood(CreateFoodDto);

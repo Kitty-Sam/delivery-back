@@ -55,4 +55,42 @@ export class UserService {
             },
         });
     }
+
+    async addToFavoriteFood(params: {
+        userId: number;
+        foodId: number,
+    }): Promise<User> {
+        const { userId, foodId } = params;
+        return this.prisma.user.update({
+            where: {
+                id: userId
+            },
+            data: {
+                favorites: {
+                    connect: {
+                        id: foodId
+                    },
+                },
+            },
+        });
+    }
+
+    async removeFromFavoriteFood(params: {
+        userId: number;
+        foodId: number,
+    }): Promise<User> {
+        const { userId, foodId } = params;
+        return this.prisma.user.update({
+            where: {
+                id: userId
+            },
+            data: {
+                favorites: {
+                    disconnect: {
+                        id: foodId
+                    },
+                },
+            },
+        });
+    }
 }

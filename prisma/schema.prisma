@@ -16,9 +16,10 @@ model User {
   name  String
   password String
   email String  @unique
-
   avatar  String?
+
   orders Order[]
+  favorites Food[]
 }
 
 model Food {
@@ -27,8 +28,13 @@ model Food {
   description  String
   image  String?
   price String
+  about String
+
   orders Order[]
+  users User[]
 }
+
+
 
 model Order {
   id    Int     @default(autoincrement()) @id

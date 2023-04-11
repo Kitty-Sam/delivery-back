@@ -19,5 +19,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+
+## Seeding DB
+$ npx prisma db seed
 ```
 

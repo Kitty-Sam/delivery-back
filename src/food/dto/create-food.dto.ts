@@ -17,6 +17,12 @@ export class CreateFoodDto {
     readonly price: string;
 
 
+    @IsNotEmpty()
+    @IsString()
+    @MinLength(3)
+    readonly about: string;
+
+
     @IsString()
     readonly image?: string;
 

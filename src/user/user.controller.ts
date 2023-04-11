@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {User as UserModel} from "@prisma/client";
 import {UserService} from "./user.service";
 
@@ -43,5 +43,21 @@ export class UserController {
     async updateUserAvatarById(@Param('id') id: string, @Body() UpdateUserAvatarDto, )
         : Promise<UserModel> {
         return this.userService.updateUser({ where: {id: Number(id)}, data: UpdateUserAvatarDto});
+    }
+
+    @ApiOperation({ summary: 'Add to favorite food' })
+    @ApiResponse({ status: 200, description: 'Return Changed User'})
+    @Post('favorite/food')
+    async addToFavoriteFood( @Body() {userId, foodId}, )
+        : Promise<UserModel> {
+        return this.userService.addToFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
+    }
+
+    @ApiOperation({ summary: 'Remove from favorite food' })
+    @ApiResponse({ status: 200, description: 'Return Changed User'})
+    @Post('unfavorite/food')
+    async removeFromFavoriteFood( @Body() {userId, foodId}, )
+        : Promise<UserModel> {
+        return this.userService.removeFromFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
     }
 }
