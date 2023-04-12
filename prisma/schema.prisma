@@ -44,5 +44,14 @@ model Order {
 }
 
 
+model Courier {
+  id    Int     @default(autoincrement()) @id
+  name  String
+  surname String
+  phone String  @unique
+  avatar  String?
+}
+
+
 
 
