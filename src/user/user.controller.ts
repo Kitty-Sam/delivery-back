@@ -60,4 +60,13 @@ export class UserController {
         : Promise<UserModel> {
         return this.userService.removeFromFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
     }
+
+
+    @ApiOperation({ summary: 'Get favorite foods' })
+    @ApiResponse({ status: 200, description: 'Return Changed User'})
+    @Post('favorite/foods')
+    async getFavoriteFood( @Body() {userId}, )
+        : Promise<UserModel> {
+        return this.userService.getFavoriteFoods({ userId: Number(userId)})
+    }
 }

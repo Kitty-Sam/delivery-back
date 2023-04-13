@@ -13,6 +13,9 @@ export class UserService {
         return this.prisma.user.findUnique({
             where: {
                 id
+            },
+            include: {
+                favorites: true
             }
         });
     }
@@ -22,6 +25,9 @@ export class UserService {
         return this.prisma.user.findUnique({
             where: {
                 email
+            },
+            include: {
+                favorites: true
             }
         });
     }
@@ -91,6 +97,21 @@ export class UserService {
                     },
                 },
             },
+        });
+    }
+
+
+    async getFavoriteFoods (params: {
+        userId: number;
+    }): Promise<User> {
+        const { userId } = params;
+        return this.prisma.user.findUnique({
+            where: {
+                id: userId
+            },
+           include: {
+                favorites: true
+           }
         });
     }
 }

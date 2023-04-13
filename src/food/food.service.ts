@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
-import {Food} from "@prisma/client";
+import {Food, User} from "@prisma/client";
 import {PrismaService} from "../prisma.service";
+
 
 @Injectable()
 export class FoodService {
@@ -23,4 +24,41 @@ export class FoodService {
         });
     }
 
-}
+
+    async filterFoodByName(params: {
+        foodName: string,
+    }): Promise<Food[]> {
+        const { foodName } = params;
+        return this.prisma.food.findMany({
+            where: {
+                name: {
+                    contains: foodName,
+                }
+            }
+        });
+    }
+
+    async filterFavoriteFoodByName(params: {
+        userId: number,
+        foodName: string,
+    }): Promise<User> {
+        const {foodName, userId} = params;
+        return this.prisma.user.findUnique({
+            where: {
+                id: userId,
+            },
+            include: {
+                favorites: {
+                    where: {
+                        name: {
+                            contains: foodName,
+                        }
+                    }
+                }
+            },
+
+        })
+
+    }}
+
+

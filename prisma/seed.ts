@@ -53,38 +53,77 @@ async function main() {
     //     },
     // })
 
-    const courierOne = await prisma.courier.upsert({
-        where: {id: 1},
+    // const pork = await prisma.food.upsert({
+    //     where: {id: 5},
+    //     update: {},
+    //     create: {
+    //         name: 'Fried Pork',
+    //         description: 'Spicy fried pork',
+    //         image: 'https://www.thespruceeats.com/thmb/vZmyXlZwV_Ja8F8-wVIiJphfj2k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tonkatsu-recipe-japanese-breaded-and-deep-fried-pork-2031274-hero-01-31a9f4e17fc04eeba22dee6c0caf27b7.jpg',
+    //         price: '8.50',
+    //         about: 'Our most popular choice! A delicious mix of different meal with various ingredients like salmon, tomato, bean, potato and much more.'
+    //
+    //     },
+    // })
+    //
+    // const lamb = await prisma.food.upsert({
+    //     where: {id: 6},
+    //     update: {},
+    //     create: {
+    //         name: 'Fried Lamb',
+    //         description: 'Spicy fried lamb',
+    //         image: 'https://assets.epicurious.com/photos/58865070d79ae59e2081c12e/1:1/w_2560%2Cc_limit/lamb-fry-recipe-12012017.jpg',
+    //         price: '9.50',
+    //         about: 'Our most popular choice! A delicious mix of different meal with various ingredients like salmon, tomato, bean, potato and much more.'
+    //
+    //     },
+    // })
+
+    const octopus = await prisma.food.upsert({
+        where: {id: 121},
         update: {},
         create: {
-            name: 'Budi',
-            surname: 'Sanjaya',
-            avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556529.png',
-            phone: '+375 (29) 222 22 22'
+            name: 'Fried Octopus',
+            description: 'Spicy fried octopus',
+            image: 'https://www.sbs.com.au/food/sites/sbs.com.au.food/files/stewed-baby-octopus-pops-estofats.jpg',
+            price: '10.50',
+            about: 'Our most popular choice! A delicious mix of different meal with various ingredients like salmon, tomato, bean, potato and much more.'
+
         },
     })
 
-    const courierTwo = await prisma.courier.upsert({
-        where: {id: 2},
-        update: {},
-        create: {
-            name: 'Andi',
-            surname: 'Hermansyah',
-            avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556512.png',
-            phone: '+375 (29) 333 33 33'
-        },
-    })
-
-    const courierThree = await prisma.courier.upsert({
-        where: {id: 3},
-        update: {},
-        create: {
-            name: 'Agung',
-            surname: 'Prasetya',
-            avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556520.png',
-            phone: '+375 (29) 444 44 44'
-        },
-    })
+    // const courierOne = await prisma.courier.upsert({
+    //     where: {id: 1},
+    //     update: {},
+    //     create: {
+    //         name: 'Budi',
+    //         surname: 'Sanjaya',
+    //         avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556529.png',
+    //         phone: '+375 (29) 222 22 22'
+    //     },
+    // })
+    //
+    // const courierTwo = await prisma.courier.upsert({
+    //     where: {id: 2},
+    //     update: {},
+    //     create: {
+    //         name: 'Andi',
+    //         surname: 'Hermansyah',
+    //         avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556512.png',
+    //         phone: '+375 (29) 333 33 33'
+    //     },
+    // })
+    //
+    // const courierThree = await prisma.courier.upsert({
+    //     where: {id: 3},
+    //     update: {},
+    //     create: {
+    //         name: 'Agung',
+    //         surname: 'Prasetya',
+    //         avatar: 'https://cdn-icons-png.flaticon.com/512/5556/5556520.png',
+    //         phone: '+375 (29) 444 44 44'
+    //     },
+    // })
 
 }
 main()
