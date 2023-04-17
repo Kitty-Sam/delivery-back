@@ -46,6 +46,7 @@ model Order {
   userId Int
   total Float
 
+
   courier   Courier @relation(fields: [courierId], references: [id])
   courierId Int
 }

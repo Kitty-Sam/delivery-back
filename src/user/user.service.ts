@@ -17,7 +17,11 @@ export class UserService {
             },
             include: {
                 favorites: true,
-                orders: true,
+                orders: {
+                    include: {
+                        courier: true
+                    }
+                },
             }
         });
     }

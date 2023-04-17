@@ -17,8 +17,8 @@ export class CategoryService {
         const { categoryId } = params;
         return this.prisma.food.findMany({
             where: {
-                categoryId
-            }
+                categoryId,
+            },
         });
     }
 }

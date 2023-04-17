@@ -34,6 +34,7 @@ export class FoodService {
             where: {
                 name: {
                     contains: foodName,
+                    mode: 'insensitive'
                 }
             }
         });
@@ -53,6 +54,7 @@ export class FoodService {
                     where: {
                         name: {
                             contains: foodName,
+                            mode: 'insensitive'
                         }
                     }
                 }
