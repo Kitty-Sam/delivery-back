@@ -1,6 +1,7 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
 import {CategoryService} from "./category.service";
 import {CategoryModule} from "./category.module";
+import {User as UserModel} from "@prisma/client";
 
 
 
@@ -20,6 +21,13 @@ export class CategoryController {
     async filterFoodByCategory(
         @Body()  @Body() {categoryId}
     ): Promise<CategoryModule[]> {
-        return this.categoryService.filterFoodByCategory({ categoryId });
+        return this.categoryService.filterFoodByCategory({ categoryId: Number(categoryId) });
+    }
+
+    @Post('categories/favorite/filter')
+    async filterFavoriteFoodByCategory(
+        @Body()  @Body() {userId, categoryId}
+    ): Promise<UserModel> {
+        return this.categoryService.filterFavoriteFoodByCategory({ userId: Number(userId), categoryId: Number(categoryId) });
     }
 }

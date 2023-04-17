@@ -121,28 +121,6 @@ export class UserService {
         });
     }
 
-
-    // async addCourier(params: {
-    //     userId: number;
-    //     courierId: number,
-    // }): Promise<User> {
-    //     const { userId, courierId } = params;
-    //     return this.prisma.user.update({
-    //         where: {
-    //             id: userId
-    //         },
-    //         data: {
-    //             couriers: {
-    //                 connect: {
-    //                     id: courierId
-    //                 },
-    //             },
-    //         },
-    //     });
-    // }
-
-
-
     async createOrder(params: {
         order: {count: number, order: Food}[],
         userId: number;

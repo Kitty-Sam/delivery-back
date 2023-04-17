@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {PrismaService} from "../prisma.service";
-import {Category, Food} from "@prisma/client";
+import {Category, Food, User} from "@prisma/client";
 
 @Injectable()
 export class CategoryService {
@@ -21,4 +21,26 @@ export class CategoryService {
             },
         });
     }
+
+    async filterFavoriteFoodByCategory(params: {
+        userId: number,
+        categoryId: number,
+    }): Promise<User> {
+        const { userId, categoryId } = params;
+        return this.prisma.user.findUnique({
+            where: {
+                id: userId
+            },
+            include: {
+                favorites: {
+                    where: {
+                       categoryId
+                    }
+                }
+            },
+        });
+    }
+
+
+
 }
