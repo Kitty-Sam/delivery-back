@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
-import {User} from '@prisma/client';
+import {Food, User} from '@prisma/client';
 import {PrismaService} from "../prisma.service";
+
 
 
 @Injectable()
@@ -15,7 +16,8 @@ export class UserService {
                 id
             },
             include: {
-                favorites: true
+                favorites: true,
+                orders: true,
             }
         });
     }
@@ -112,6 +114,57 @@ export class UserService {
            include: {
                 favorites: true
            }
+        });
+    }
+
+
+    // async addCourier(params: {
+    //     userId: number;
+    //     courierId: number,
+    // }): Promise<User> {
+    //     const { userId, courierId } = params;
+    //     return this.prisma.user.update({
+    //         where: {
+    //             id: userId
+    //         },
+    //         data: {
+    //             couriers: {
+    //                 connect: {
+    //                     id: courierId
+    //                 },
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    async createOrder(params: {
+        order: {count: number, order: Food}[],
+        userId: number;
+        courierId: number;
+        total: number
+    }): Promise<any> {
+        const { userId, order, courierId, total } = params;
+        return this.prisma.order.create({
+            data: {
+                total: total,
+                courier: {
+                    connect: {
+                        id: courierId
+                    }
+                },
+                user: {
+                   connect: {
+                       id: userId
+                   }
+                },
+                foods: {
+                    connect: order.length
+                            ? order.map((el) => ({ id: el.order.id }))
+                            : [],
+                },
+            },
         });
     }
 }

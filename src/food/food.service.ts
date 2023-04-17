@@ -16,6 +16,7 @@ export class FoodService {
         });
     }
 
+
     async deleteFood({id}: {id: number}): Promise<Food> {
         return this.prisma.food.delete({
             where: {

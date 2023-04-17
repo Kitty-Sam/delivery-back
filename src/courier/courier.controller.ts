@@ -1,9 +1,9 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {CourierService} from "./courier.service";
 import {Courier as CourierModule} from "@prisma/client";
 
 
-@Controller('courier')
+@Controller('')
 export class CourierController {
     constructor(
         private readonly courierService: CourierService,
@@ -11,7 +11,7 @@ export class CourierController {
 
 
     @Get('/couriers')
-    async getAllFoods()
+    async getAllCouriers()
         : Promise<CourierModule[]> {
         return this.courierService.couriers();
     }
@@ -22,5 +22,12 @@ export class CourierController {
     ): Promise<CourierModule> {
         return this.courierService.createCourier(CreateCourierDto);
     }
+
+    @Get('courier/:id')
+    async getUserById(@Param('id') id: string)
+        : Promise<CourierModule> {
+        return this.courierService.getCourierById({id: Number(id)});
+    }
+
 
 }

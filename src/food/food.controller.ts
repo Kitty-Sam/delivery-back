@@ -4,6 +4,7 @@ import {Food as FoodModel} from "@prisma/client";
 import {User as UserModel} from "@prisma/client";
 
 
+
 @Controller('')
 export class FoodController {
     constructor(
@@ -24,6 +25,7 @@ export class FoodController {
     ): Promise<FoodModel> {
         return this.foodService.createFood(CreateFoodDto);
     }
+
 
     @Post('/filter')
     async filterFoodByName(

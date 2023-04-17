@@ -17,4 +17,15 @@ export class CourierService {
             data: CreateCourierDto
         });
     }
+
+
+    async getCourierById({id}: {id: number}
+    ): Promise<Courier | null> {
+        return this.prisma.courier.findUnique({
+            where: {
+                id
+            },
+
+        });
+    }
 }
