@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {Food, User} from "@prisma/client";
 import {PrismaService} from "../prisma.service";
+import {CreateFoodDto} from "./dto/create-food.dto";
 
 
 @Injectable()
@@ -10,9 +11,9 @@ export class FoodService {
         return this.prisma.food.findMany();
     }
 
-    async createFood(CreateFoodDto): Promise<Food> {
+    async createFood(foodDto: CreateFoodDto): Promise<Food> {
         return this.prisma.food.create({
-            data: CreateFoodDto
+            data: foodDto
         });
     }
 

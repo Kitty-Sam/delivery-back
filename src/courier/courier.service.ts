@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {PrismaService} from "../prisma.service";
 import {Courier} from "@prisma/client";
+import {CreateCourierDto} from "./dto/create-courier.dto";
 
 
 
@@ -12,9 +13,9 @@ export class CourierService {
         return this.prisma.courier.findMany();
     }
 
-    async createCourier(CreateCourierDto): Promise<Courier> {
+    async createCourier(courierDto: CreateCourierDto): Promise<Courier> {
         return this.prisma.courier.create({
-            data: CreateCourierDto
+            data: courierDto
         });
     }
 

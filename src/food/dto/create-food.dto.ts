@@ -1,28 +1,29 @@
-import { IsNotEmpty, IsString, MinLength} from 'class-validator';
+import { IsNotEmpty, IsString} from 'class-validator';
+import {ApiProperty} from "@nestjs/swagger";
 
 export class CreateFoodDto {
+    @ApiProperty({ example: 'Spider', description: 'Food name' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly name: string;
 
+    @ApiProperty({ example: 'Spicy and crispy', description: 'Food description' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly description: string;
 
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
+    @ApiProperty({ example: '11.5', description: 'Food price' })
     readonly price: string;
 
 
+    @ApiProperty({ example: 'The most incredible option for dinner', description: 'Food about' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly about: string;
 
-
+    @ApiProperty({ example: 'http:/', description: 'Food image  link' })
     @IsString()
     readonly image?: string;
 

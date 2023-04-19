@@ -1,22 +1,24 @@
-import { IsNotEmpty, IsString, MinLength} from 'class-validator';
+import { IsNotEmpty, IsString} from 'class-validator';
+import {ApiProperty} from "@nestjs/swagger";
 
 export class CreateCourierDto {
+    @ApiProperty({ example: 'example', description: 'Courier name' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly name: string;
 
+
+    @ApiProperty({ example: 'example', description: 'Courier surname' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly surname: string;
 
+    @ApiProperty({ example: '+375 33 333 33 33', description: 'Courier phone number' })
     @IsNotEmpty()
     @IsString()
-    @MinLength(3)
     readonly phone: string;
 
-
+    @ApiProperty({ example: 'http://', description: 'Courier avatar. Can be empty' })
     @IsString()
     readonly avatar?: string;
 
