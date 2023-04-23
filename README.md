@@ -20,7 +20,15 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
-4. Running the backend service
+
+6. Launch migrations for seeding db (now fix your food table by adding categoryId from category table as you want (by hand). Foe example, categoryId - 4 means fast food. And add your own user (password must be more than 4 symbols) )
+
+```bash
+$ npx prisma migrate dev
+```
+
+
+5. Running the backend service
 
 ```bash
 $ npm run start:dev
