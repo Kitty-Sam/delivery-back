@@ -1,21 +1,30 @@
 ## Local setup
 
-1.Install docker and docker-compose using the instruction https://docs.docker.com/get-docker/
+0. Install docker and docker-compose using the instruction https://docs.docker.com/get-docker/
 
-2.Rename .env.example to .env
+1. Rename .env.example to .env
 
-3.Install dependencies
+2. Install dependencies
+
+```bash
 $ npm install
+```
 
-4.Running the Docker with PostgreSQL service:
+3. Running the Docker with PostgreSQL service:
 
+```bash
 # for start
 $ docker-compose up -d
 
 # for stop
 $ docker-compose down
+```
 
-5.Running the backend service
+4. Running the backend service
+
+```bash
 $ npm run start:dev
+```
+
 
 
