@@ -1,27 +1,21 @@
-## Description
+## Local setup
 
-How to init this project?
+1.Install docker and docker-compose using the instruction https://docs.docker.com/get-docker/
 
-## Installation
+2.Rename .env.example to .env
 
-```bash
+3.Install dependencies
 $ npm install
-```
 
-## Running the app
+4.Running the Docker with PostgreSQL service:
 
-```bash
-# development
-$ npm run start
+# for start
+$ docker-compose up -d
 
-# watch mode
+# for stop
+$ docker-compose down
+
+5.Running the backend service
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
-
-
-## Seeding DB
-$ npx prisma db seed
-```
 
