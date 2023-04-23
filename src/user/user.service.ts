@@ -126,12 +126,14 @@ export class UserService {
         order: {count: number, order: Food}[],
         userId: number;
         courierId: number;
-        total: number
+        total: number,
+        address: string
     }): Promise<any> {
-        const { userId, order, courierId, total } = params;
+        const { userId, order, courierId, total, address } = params;
         return this.prisma.order.create({
             data: {
                 total: total,
+                address: address,
                 courier: {
                     connect: {
                         id: courierId
@@ -150,4 +152,17 @@ export class UserService {
             },
         });
     }
-}
+
+
+    async removeOrder(params: {
+        id: number
+    }): Promise<any> {
+        const {id} = params;
+        return this.prisma.order.delete({
+            where: {
+                id
+            },
+        });
+
+
+}}

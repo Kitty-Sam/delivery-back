@@ -18,10 +18,12 @@ export class FoodService {
     }
 
 
-    async deleteFood({id}: {id: number}): Promise<Food> {
+    async deleteFood(params: {
+        id: number,
+    }): Promise<Food> {
         return this.prisma.food.delete({
             where: {
-                id
+                id: params.id
             },
         });
     }

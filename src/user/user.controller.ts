@@ -77,10 +77,19 @@ export class UserController {
     @ApiResponse({ status: 200, description: 'Return Changed User with new order'})
     @Post('/user/order')
     async createOrder(
-        @Body() {userId,  order, courierId, total}
+        @Body() {userId,  order, courierId, total, address}
     ): Promise<UserModel> {
-        return this.userService.createOrder({userId,  order, courierId, total});
+        return this.userService.createOrder({userId,  order, courierId, total, address});
     }
 
+
+    @ApiOperation({ summary: 'Remove order' })
+    @ApiResponse({ status: 200, description: 'Return Changed User without order'})
+    @Delete(`/user/order/:id`)
+    async removeOrderById(
+        @Param('id') id: string
+    ): Promise<UserModel> {
+        return this.userService.removeOrder({id: Number(id)});
+    }
 
 }
