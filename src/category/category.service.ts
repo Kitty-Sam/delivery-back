@@ -22,25 +22,5 @@ export class CategoryService {
         });
     }
 
-    async filterFavoriteFoodByCategory(params: {
-        userId: number,
-        categoryId: number,
-    }): Promise<User> {
-        const { userId, categoryId } = params;
-        return this.prisma.user.findUnique({
-            where: {
-                id: userId
-            },
-            include: {
-                favorites: {
-                    where: {
-                       categoryId
-                    }
-                }
-            },
-        });
-    }
-
-
 
 }

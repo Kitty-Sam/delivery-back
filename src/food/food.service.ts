@@ -41,30 +41,8 @@ export class FoodService {
                 }
             }
         });
-    }
-
-    async filterFavoriteFoodByName(params: {
-        userId: number,
-        foodName: string,
-    }): Promise<User> {
-        const {foodName, userId} = params;
-        return this.prisma.user.findUnique({
-            where: {
-                id: userId,
-            },
-            include: {
-                favorites: {
-                    where: {
-                        name: {
-                            contains: foodName,
-                            mode: 'insensitive'
-                        }
-                    }
-                }
-            },
-
-        })
-
     }}
+
+
 
 
