@@ -28,4 +28,10 @@ jobs:
         run: docker rmi delivery_api:latest || true  # Удаление Docker об
 
       - name: Start backend
-        run: docker compose up  # Запуск контейнеров Docker
+        run: docker compose up -d # Запуск контейнеров Docker
+      
+      - name: Clean workspace
+        continue-on-error: true
+        run: |
+          rm -rf ./* ./.* 
+          rm -rf $GITHUB_WORKSPACE@tmp 
