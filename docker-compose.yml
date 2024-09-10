@@ -1,7 +1,8 @@
 #version: '3.9'
 services:
-  postgres:
-    container_name: delivery_db
+
+  database:
+    container_name: delivery
     image: postgres:latest
     restart: always
     environment:
@@ -11,11 +12,9 @@ services:
       - TZ=GMT+3'
       - PGTZ=GMT+3'
     ports:
-      - '127.0.0.1:5444:5432'
+      - 127.0.0.1:5444:5432
     volumes:
-      - delivery_db:/var/lib/postgresql/data
-    networks:
-      - local
+      - delivery:/var/lib/postgresql/data
 
   api:
     container_name: delivery_api
@@ -25,18 +24,14 @@ services:
       dockerfile: Dockerfile
     restart: always
     depends_on:
-      - postgres  # Ensure that the backend service starts after the database service is up and running
+      - database  # Ensure that the backend service starts after the database service is up and running
     ports:
-      - '127.0.0.1:5000:5000'  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
+      - 127.0.0.1:5000:5000  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
     environment:
       - DATABASE_URL=${DATABASE_URL}
 
-networks:
-  local:
-    driver: bridge
-
 volumes:
-  delivery_db:
+  delivery:
     external: true
       
   
