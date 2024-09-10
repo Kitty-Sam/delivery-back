@@ -19,25 +19,22 @@ export class UserService {
             include: {
                 favorites: true,
                 orders: {
-                    include: {
-                        courier: true
-                    }
                 },
             }
         });
     }
 
-    async getUserByEmail({email}: {email: string}
-    ): Promise<User | null> {
-        return this.prisma.user.findUnique({
-            where: {
-                email
-            },
-            include: {
-                favorites: true
-            }
-        });
-    }
+    // async getUserByEmail({email}: {email: string}
+    // ): Promise<User | null> {
+    //     return this.prisma.user.findUnique({
+    //         where: {
+    //             email
+    //         },
+    //         include: {
+    //             favorites: true
+    //         }
+    //     });
+    // }
 
 
     async users(): Promise<User[]> {
@@ -125,25 +122,25 @@ export class UserService {
     async createOrder(params: {
         order: {count: number, order: Food}[],
         userId: number;
-        courierId: number;
-        total: number,
-        address: string
+        userName: string,
+        userAddress: string,
+        userPhone:string,
+        paymentMethod: string,
+        comment: string
     }): Promise<any> {
-        const { userId, order, courierId, total, address } = params;
+        const { userId, order, userAddress, userPhone, userName, comment, paymentMethod } = params;
         return this.prisma.order.create({
             data: {
-                total: total,
-                address: address,
-                courier: {
-                    connect: {
-                        id: courierId
-                    }
-                },
                 user: {
                    connect: {
                        id: userId
                    }
                 },
+                userName,
+                userAddress,
+                userPhone,
+                comment,
+                paymentMethod,
                 foods: {
                     connect: order.length
                             ? order.map((el) => ({ id: el.order.id }))

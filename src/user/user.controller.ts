@@ -47,39 +47,43 @@ export class UserController {
         return this.userService.updateUser({ where: {id: Number(id)}, data: updateAvatar});
     }
 
-    @ApiOperation({ summary: 'Add to favorite food' })
-    @ApiResponse({ status: 200, description: 'Return Changed User with array of favorite foods'})
-    @Post('favorite/food')
-    async addToFavoriteFood( @Body() {userId, foodId}, )
-        : Promise<UserModel> {
-        return this.userService.addToFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
-    }
-
-    @ApiOperation({ summary: 'Remove from favorite food' })
-    @ApiResponse({ status: 200, description: 'Return Changed User with array of favorite foods'})
-    @Post('unfavorite/food')
-    async removeFromFavoriteFood( @Body() {userId, foodId}, )
-        : Promise<UserModel> {
-        return this.userService.removeFromFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
-    }
-
-
-    @ApiOperation({ summary: 'Get favorite foods' })
-    @ApiResponse({ status: 200, description: 'Return Changed User'})
-    @Post('favorite/foods')
-    async getFavoriteFood( @Body() {userId}, )
-        : Promise<UserModel> {
-        return this.userService.getFavoriteFoods({ userId: Number(userId)})
-    }
+    // @ApiOperation({ summary: 'Add to favorite food' })
+    // @ApiResponse({ status: 200, description: 'Return Changed User with array of favorite foods'})
+    // @Post('favorite/food')
+    // async addToFavoriteFood( @Body() {userId, foodId}, )
+    //     : Promise<UserModel> {
+    //     return this.userService.addToFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
+    // }
+    //
+    // @ApiOperation({ summary: 'Remove from favorite food' })
+    // @ApiResponse({ status: 200, description: 'Return Changed User with array of favorite foods'})
+    // @Post('unfavorite/food')
+    // async removeFromFavoriteFood( @Body() {userId, foodId}, )
+    //     : Promise<UserModel> {
+    //     return this.userService.removeFromFavoriteFood({ userId: Number(userId), foodId:  Number(foodId)});
+    // }
+    //
+    //
+    // @ApiOperation({ summary: 'Get favorite foods' })
+    // @ApiResponse({ status: 200, description: 'Return Changed User'})
+    // @Post('favorite/foods')
+    // async getFavoriteFood( @Body() {userId}, )
+    //     : Promise<UserModel> {
+    //     return this.userService.getFavoriteFoods({ userId: Number(userId)})
+    // }
 
 
     @ApiOperation({ summary: 'Create order' })
     @ApiResponse({ status: 200, description: 'Return Changed User with new order'})
     @Post('/user/order')
     async createOrder(
-        @Body() {userId,  order, courierId, total, address}
+        @Body() {userId,  order, userName, userAddress, userPhone,paymentMethod, comment}
     ): Promise<UserModel> {
-        return this.userService.createOrder({userId,  order, courierId, total, address});
+        return this.userService.createOrder({userId,  order, userName,
+            userAddress,
+            userPhone,
+            paymentMethod,
+            comment});
     }
 
 
