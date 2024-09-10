@@ -11,7 +11,7 @@ services:
       - TZ=GMT+3'
       - PGTZ=GMT+3'
     ports:
-      - '127.0.0.1:5432:5432'
+      - '127.0.0.1:5444:5432'
     volumes:
       - delivery_db:/var/lib/postgresql/data
     networks:
