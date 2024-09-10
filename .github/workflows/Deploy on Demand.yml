@@ -11,6 +11,12 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    env:
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{ secrets.POSTGRES_PASSWORD }}@fydb:5432/${{secrets.POSTGRES_DB}}?schema=public
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
