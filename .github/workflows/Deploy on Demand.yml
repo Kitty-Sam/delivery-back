@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GIT_TOKEN }}  # Используем секрет GIT_TOKEN для аутентификации
-          repository: KirillJBee/delivery-back-DevOps
-          ref: master
+        # with:
+        #   token: ${{ secrets.GIT_TOKEN }}  # Используем секрет GIT_TOKEN для аутентификации
+        #   repository: KirillJBee/delivery-back-DevOps
+        #   ref: master
