@@ -15,11 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Stop running container
-      #   run: docker compose down || true # Остановка контейнеров Docker
+      - name: Stop running container
+        run: docker compose down || true # Остановка контейнеров Docker
 
-      # - name: Remove backend image
-      #   run: docker rmi fy_backend:latest || true  # Удаление Docker об
+      - name: Remove backend image
+        run: docker rmi delivery_api:latest || true  # Удаление Docker об
 
-      # - name: Start backend
-      #   run: docker compose up -d  # Запуск контейнеров Docker
+      - name: Start backend
+        run: docker compose up -d  # Запуск контейнеров Docker
