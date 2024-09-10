@@ -17,22 +17,19 @@ services:
     networks:
       - local
 
-  # api:
-  #   container_name: fyback
-  #   image: fy_backend
-  #   build:       # Build the Docker image using the Dockerfile in the current directory
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   depends_on:
-  #   - database  # Ensure that the backend service starts after the database service is up and running
-  #   ports:
-  #     - 4000:4000  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
-  #   networks:
-  #     fy_network:
-  #       ipv4_address: 172.15.0.4
-  #   environment:
-  #     - DATABASE_URL=${DATABASE_URL}
+  api:
+    container_name: delivery_api
+    image: backend_delivery
+    build:       # Build the Docker image using the Dockerfile in the current directory
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - postgres  # Ensure that the backend service starts after the database service is up and running
+    ports:
+      - '127.0.0.1:5000:5000'  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
 
 networks:
   local:
