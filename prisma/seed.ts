@@ -77,11 +77,6 @@ function seedFoods() {
         .catch(e => console.error('[SEED] Failed to create foods records', e))
 }
 
-function seedCouriers() {
-    Promise.all(couriers.map(courier => prisma.courier.create({ data: { name: courier.name, surname: courier.surname, phone: courier.phone, avatar: courier.avatar } })))
-        .then(() => console.info('[SEED] Successfully create couriers records'))
-        .catch(e => console.error('[SEED] Failed to create couriers records', e))
-}
 
 function seedCategories() {
     Promise.all(categories.map(category => prisma.category.create({ data: { title: category} })))
@@ -90,6 +85,5 @@ function seedCategories() {
 }
 
 
-seedCouriers();
 seedCategories();
 seedFoods();

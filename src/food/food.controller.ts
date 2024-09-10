@@ -41,14 +41,6 @@ export class FoodController {
         return this.foodService.filterFoodByName({ foodName });
     }
 
-    @ApiOperation({ summary: 'Filter favorite foods by title for proper user' })
-    @ApiResponse({ status: 200, description: 'Return array of filtered favorite foods for proper user'})
-    @Post('favorite/filter')
-    async filterFavoriteFoodByName(
-        @Body()  {userId, foodName}
-    ): Promise<UserModel> {
-        return this.foodService.filterFavoriteFoodByName({userId: Number(userId), foodName });
-    }
 
 
     @ApiOperation({ summary: 'Remove food position' })
