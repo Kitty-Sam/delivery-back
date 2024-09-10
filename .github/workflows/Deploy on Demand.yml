@@ -1,1 +1,16 @@
-#init
+name: Delpoy on Demand
+
+on:
+  workflow_dispatch
+    # push:
+    #   branches:
+    #     - master
+    # pull_request:
+    #   branches:
+    #     - master
+jobs:
+  deploy:
+    runs-on: delivery
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
