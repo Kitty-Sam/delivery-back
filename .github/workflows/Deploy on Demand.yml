@@ -1,0 +1,37 @@
+name: Delpoy on Demand
+
+on:
+  workflow_dispatch
+    # push:
+    #   branches:
+    #     - master
+    # pull_request:
+    #   branches:
+    #     - master
+jobs:
+  deploy:
+    runs-on: self-hosted
+    env:
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{ secrets.POSTGRES_PASSWORD }}@delivery_bd:5432/${{secrets.POSTGRES_DB}}?schema=public
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Stop running container
+        run: docker compose down || true # Остановка контейнеров Docker
+
+      - name: Remove backend image
+        run: docker rmi api_delivery:latest || true  # Удаление Docker об
+
+      - name: Start backend
+        run: docker compose up -d # Запуск контейнеров Docker
+      
+      - name: Clean workspace
+        continue-on-error: true
+        run: |
+          rm -rf ./* ./.* 
+          rm -rf $GITHUB_WORKSPACE@tmp 
