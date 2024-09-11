@@ -2,7 +2,7 @@
 services:
 
   database:
-    container_name: delivery
+    container_name: delivery_bd
     image: postgres:latest
     restart: always
     environment:
@@ -18,7 +18,7 @@ services:
 
   api:
     container_name: delivery_api
-    image: backend_delivery
+    image: api_delivery
     build:       # Build the Docker image using the Dockerfile in the current directory
       context: .
       dockerfile: Dockerfile

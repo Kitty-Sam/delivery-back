@@ -15,7 +15,7 @@ jobs:
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{ secrets.POSTGRES_PASSWORD }}@delivery:5432/${{secrets.POSTGRES_DB}}?schema=public
+      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{ secrets.POSTGRES_PASSWORD }}@delivery_bd:5432/${{secrets.POSTGRES_DB}}?schema=public
     
     steps:
       - name: Checkout code
@@ -25,7 +25,7 @@ jobs:
         run: docker compose down || true # Остановка контейнеров Docker
 
       - name: Remove backend image
-        run: docker rmi delivery_api:latest || true  # Удаление Docker об
+        run: docker rmi api_delivery:latest || true  # Удаление Docker об
 
       - name: Start backend
         run: docker compose up -d # Запуск контейнеров Docker
